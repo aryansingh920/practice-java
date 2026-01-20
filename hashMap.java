@@ -1,5 +1,6 @@
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,8 +31,23 @@ public class hashMap {
         return firstIndex;
     }
 
+    public static boolean containsDuplicate(int[] nums) {
+        HashSet<Integer> hashSet = new HashSet<>();
+
+        for (int i : nums) {
+            if (hashSet.contains(i)) {
+                return true;
+            }
+            hashSet.add(i);
+        }
+
+        return false;
+    }
+
     public static void main(String[] args) {
-        int Output = firstUniqueCharIndex("leeldezd");
-        System.out.println(Output);
+        // int Output = firstUniqueCharIndex("leeldezd");
+        // System.out.println(Output);
+
+        System.out.println(containsDuplicate(new int[] { 4, 2, 3, 1, 4 }));
     }
 }
