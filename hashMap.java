@@ -1,8 +1,10 @@
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
 
 
 public class hashMap {
@@ -44,10 +46,27 @@ public class hashMap {
         return false;
     }
 
-    public static void main(String[] args) {
-        // int Output = firstUniqueCharIndex("leeldezd");
-        // System.out.println(Output);
+    public static int[] findKLargest(int[] nums, int k) {
+        PriorityQueue<Integer> heapPriorityQueue = new PriorityQueue<>();
 
-        System.out.println(containsDuplicate(new int[] { 4, 2, 3, 1, 4 }));
+        for (int i : nums) {
+            heapPriorityQueue.add(i);
+            if (heapPriorityQueue.size() > k) {
+                heapPriorityQueue.poll();
+            }
+        }
+        int[] result = new int[k];
+        int index = 0;
+
+        while (!heapPriorityQueue.isEmpty()) {
+            result[index++] = heapPriorityQueue.poll();
+        }
+        return result;
+    }
+    public static void main(String[] args) {
+        System.out.println("firstUniqueCharIndex : " + firstUniqueCharIndex("leeldezd"));
+        System.out.println("containsDuplicate : " + containsDuplicate(new int[] { 4, 2, 3, 1, 4 }));
+        System.out.println("findKLargest : " + Arrays.toString(findKLargest(new int[] { 7, 10, 4, 3, 16, 20, 15 }, 3)));
+
     }
 }
